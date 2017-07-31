@@ -39,9 +39,6 @@ public class ExtentReports_Demo {
     WebDriver driver;
 
 
-
-
-
     //Application Permission Management
     public void AllowAppPermission() {
 
