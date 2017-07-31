@@ -88,6 +88,7 @@ public class ExtentReports_Demo {
         htmlReporter.config().setTheme(Theme.STANDARD);
     }
 
+    /* Tests are here */
     @Test
     public void passTest(){
         logger = extent.createTest("passTest");
