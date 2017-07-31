@@ -82,6 +82,7 @@ public class ExtentReports_Demo {
         extent.setSystemInfo("Environment", "Automation Testing");
         extent.setSystemInfo("User Name", "Yashwant Das");
 
+        //New comment
         htmlReporter.config().setDocumentTitle("Title of the Report Comes here");
         htmlReporter.config().setReportName("Name of the Report Comes here");
         htmlReporter.config().setTestViewChartLocation(ChartLocation.TOP);
