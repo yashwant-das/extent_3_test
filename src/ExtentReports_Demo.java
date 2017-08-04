@@ -31,12 +31,16 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ExtentReports_Demo {
     ExtentHtmlReporter htmlReporter;
     ExtentReports extent;
     ExtentTest logger;
     WebDriver driver;
+    DateFormat df;
 
 
     //Application Permission Management
@@ -61,7 +65,7 @@ public class ExtentReports_Demo {
     public void startReport() throws MalformedURLException {
 
         /* Appium Caps */
-        DesiredCapabilities caps = new DesiredCapabilities();
+        /*DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("deviceName", "Moto G4 Plus");
         caps.setCapability("platformName", "Android");
         caps.setCapability("platformVersion", "7.0");
@@ -69,26 +73,44 @@ public class ExtentReports_Demo {
         File file = new File("/Users/apple/IdeaProjects/AppTest/APK/app-internal.apk");
         caps.setCapability("app", file.getAbsolutePath());
 
-        driver = new AndroidDriver(new URL("http://172.16.16.20:4723/wd/hub"), caps);
+        driver = new AndroidDriver(new URL("http://172.16.16.20:4723/wd/hub"), caps);*/
 
         /* Reporter */
-        htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") +"/test-output/STMExtentReport.html");
+        df = new SimpleDateFormat("dd-MMM-yyyy__hh_mm_ssaa");
+        htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") +"/extentReport/reports/ExtentReport.html");
+        htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "/extentReport/reports/" + "extent_" + df.format(new Date()) + ".html", true);
+
+
         extent = new ExtentReports();
         extent.attachReporter(htmlReporter);
-        extent.setSystemInfo("Host Name", "Test Demo");
-        extent.setSystemInfo("Environment", "Automation Testing");
+        extent.setSystemInfo("Host Name", "macOS Sierra");
+        extent.setSystemInfo("Environment", "Android");
         extent.setSystemInfo("User Name", "Yashwant Das");
 
-        //New comment
-        htmlReporter.config().setDocumentTitle("Title of the Report Comes here");
-        htmlReporter.config().setReportName("Name of the Report Comes here");
+        //ExtentHtmlReporter Configuration
+
+        htmlReporter.config().setDocumentTitle("ALT Balaji Automation Test");
+        htmlReporter.config().setReportName("Test Result: Build 001");
         htmlReporter.config().setTestViewChartLocation(ChartLocation.TOP);
         htmlReporter.config().setTheme(Theme.STANDARD);
     }
 
     /* Tests are here */
+
+
+
+    /*@Test
+    public void AppStartup(){
+        logger =extent.createTest("Application startup");
+        AllowAppPermission();
+
+        Assert.assertTrue(true);
+        logger.log(Status.PASS, MarkupHelper.createLabel("Test Case Passed is passTest", ExtentColor.GREEN));
+    }*/
+
     @Test
     public void passTest(){
+
         logger = extent.createTest("passTest");
         Assert.assertTrue(true);
         logger.log(Status.PASS, MarkupHelper.createLabel("Test Case Passed is passTest", ExtentColor.GREEN));
